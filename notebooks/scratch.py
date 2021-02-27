@@ -12,7 +12,7 @@ corpus_path = r"..\barrons_333_corpus.txt"
 W2V_SIZE = 100    # Word vector dimensionality
 W2V_WINDOW = 30   # Context window size
 W2V_MIN_COUNT = 1    # Minimum word count
-W2V_EPOCHS = 50
+W2V_EPOCHS = 50    # w2v model training iters
 
 def nltk_corpus_tokenizer(corpus):
     # tokenize sentences in corpus
@@ -56,6 +56,13 @@ if __name__ == '__main__':
 
     w2v_model = api.load("glove-wiki-gigaword-50")
     logging.info(f'loaded gensim model')
-    # for _word in ["stop", "woman", "man", "bishop", "india"]:
-    #     neighbors = w2v_model.most_similar(_word)
-    #     print(neighbors)
+    for _word in ["stop", "woman", "man", "bishop", "india"]:
+        neighbors = w2v_model.most_similar(_word, topn=5)
+        print(neighbors)
+
+    """
+    # todo:
+    get all words from our dictionary and get w2v_model.wv[words] then call tsne and plot try this with diff models
+    then cluster using affinity propagation later try with dbscan
+    then use pca to visualize labels in 2D
+    """
