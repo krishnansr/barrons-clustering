@@ -14,6 +14,7 @@ W2V_WINDOW = 30   # Context window size
 W2V_MIN_COUNT = 1    # Minimum word count
 W2V_EPOCHS = 50    # w2v model training iters
 
+
 def nltk_corpus_tokenizer(corpus):
     # tokenize sentences in corpus
     wpt = nltk.WordPunctTokenizer()
@@ -21,13 +22,13 @@ def nltk_corpus_tokenizer(corpus):
     return tokenized_corpus
 
 
-def train_w2v_model(corpus, size=W2V_SIZE, window=W2V_WINDOW, min_count=W2V_MIN_COUNT, iter=W2V_EPOCHS, workers=4):
-    logging.info(f'word2vec model training started with params {size, window, min_count, iter, workers}')
+def train_w2v_model(corpus, size=W2V_SIZE, window=W2V_WINDOW, min_count=W2V_MIN_COUNT, iters=W2V_EPOCHS, workers=4):
+    logging.info(f'word2vec model training started with params {size, window, min_count, iters, workers}')
     w2v_model = word2vec.Word2Vec(corpus,
                                   size=size,
                                   window=window,
                                   min_count=min_count,
-                                  iter=iter,
+                                  iter=iters,
                                   workers=workers)
     logging.info(f'word2vec model training completed..')
     return w2v_model
